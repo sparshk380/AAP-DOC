@@ -404,8 +404,6 @@ Identify security risks and vulnerabilities across your automated infrastructure
    * Performance optimization:
 Monitor performance metrics within a project to identify areas for improvement and optimize your automation workflows. 
  
-   * ROI tracking:
-Analyze the effectiveness of your automation projects by tracking key metrics like time savings and resource utilization. 
  
    * Data-driven decision making:
 Access detailed analytics to make informed decisions regarding future automation initiatives and project prioritization. 
