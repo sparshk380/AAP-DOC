@@ -2239,16 +2239,55 @@ Note: In the screenshot aws_ec2 group is also present, because it was created us
  **Note - During the execution process, instance groups associated with Job Templates are checked before those associated with Inventories. Similarly, instance groups associated with Inventories are checked before those associated with Organizations. Thus, Instance Group assignments for the three resources form a hierarchy: Job Template > Inventory > Organization.
 
  ![Screenshots](<Instance Groups - IG SPECS.png>)
-
+You can configure controller instances to automatically join Instance Groups when they come online by defining a policy. These policies are evaluated for every new instance that comes online.
   - Name: Name must be unique and must not be named "controller".
   - Policy instance minimum - Enter the minimum number of instances to automatically assign to this group when new instances come online.
   - Policy instance percentage- Minimum percentage of all instances that will be automatically assigned to this group when new instances come online.
   - Max Concurrent jobs - Maximum number of jobs to run concurrently on this group. Zero means no limit will be enforced.
   - Max Forks - Maximum number of forks to allow across all jobs running concurrently on this group. Zero means no limit will be enforced.
 
+After saving the instance group, we can associate and instance to it inside this section only.To achieve this we can go on the created instance group and head to instances section click on associate and select the Instance you want to associate it to.
+
+![Screenshots](<Instance Groups - 3.png>)
+![Screenshots](<Instance Groups - 4.png>)
+![Screenshots](<Instance Groups - 5.png>)
+
+  - If you have a special instance which needs to be exclusively assigned to a specific Instance Group but don’t want it to automatically join other groups via “percentage” or “minimum” policies:
+    - Add the instance to one or more Instance Groups’  policy_instance_list
+
+    - Update the instance’s managed_by_policy property to be False.
+
+This will prevent the Instance from being automatically added to other groups based on percentage and minimum policy; it will only belong to the groups you’ve manually assigned it to:
+
+
+```
+HTTP PATCH /api/v2/instance_groups/Test Instance Group/
+{
+"policy_instance_list": ["special-instance"]
+}
+
+HTTP PATCH /api/v2/instances/ansible-automation.servehttp.com/
+{
+"managed_by_policy": False
+}
+```
+
 # Instances Section - 
 
-  - Purpose - Now to associate instances to an instance group, we configure that from the instances section.
+We cannot create another instance in our environment through web interface because our ansible automation platform is installed on bare metal, adding a new instance dynamically through web-ui is only available on Openshift. 
+
+For reference: read this https://docs.ansible.com/automation-controller/latest/html/administration/instances.html
+
+
+Why do we need instances?
+
+  * Instances are needed for:
+
+    * Load distribution: Spread tasks across multiple nodes for better efficiency.
+    * Scalability: Add more instances as your automation needs grow.
+    * Fault tolerance: If one instance fails, others can pick up the slack.
+
+ The instance section gives the details about the instances that are present
 
 ![Screenshots](<Instances - 1.png>)
 
@@ -2259,4 +2298,111 @@ When we click on it, it shows us the details like:
 
   - Policy Type - Auto, which means how the system manages and allocates resources for job allocation.
 
-  - Instance Groups - The instances which are a part of this group.
+  - Instance Groups - The Instance Groups to which this instance belongs.
+
+  - Node Type: 
+    - Hybrid - hybrid means, it can run playbooks and can perform the management tasks for the AAP
+    - Execution -  execution means, this type of node is specifically designed to execute playbooks and Ansible tasks. It does not host the web UI or serve as the central management node.
+
+# Credential Types Section:
+
+As an administrator with superuser access, you can define a custom credential type in a standard format using a YAML/JSON-like definition, allowing the assignment of new credential types to jobs and inventory updates. This allows you to define a custom credential type that works in ways similar to existing credential types. For example, you could create a custom credential type that injects an API token for a third-party web service into an environment variable, which your playbook or custom inventory script could consume.
+
+![Screenshots](<Credentials Types - 1.png>)
+
+  * Name: The name you want to give for the credentials
+  * Description: Provide a description about what it this credential does.
+  * Input Configuration: This is where you define the field that users will input when creating credentials of this type. This field is typically used for storing the secrets.
+  For example: 
+
+```
+  fields:
+  - id: username
+    type: string
+    label: Jenkins Username
+    secret: false
+    help_text: Enter your Jenkins username
+
+  - id: token
+    type: string
+    label: Jenkins secret Access Token
+    secret: true
+    help_text: Enter your Jenkins secret api token
+
+  - id: build_url
+    type: string
+    label: Jenkins build url
+    secret: false
+    help_text: Enter the Jenkins build URL for fetching the logs
+required:
+  - username
+  - token
+  - build_url
+  ```
+
+* Injector configuration: The Injector configuration defines how the credential will be injected into your playbooks or environments. This is key to making the credential accessible within playbooks. We can define both environment variables as well as extra variables. 
+
+Difference between env and extra variables injector:
+
+ ![Screenshots](<Difference ENV and extra var.png>)
+
+  * With Extra Variables -
+
+```
+  extra_vars: #--> extra_vars allows us to map the input field values from the credential to playbook variables.
+    jenkins_token: '{{ token }}' #--> The key on the left will be available for us to use inside the playbook.
+    jenkins_username: '{{ username }}'
+    jenkins_build_url: '{{ build_url }}'
+```
+This is how you will access these variables inside the playbooks:
+
+```
+  ---
+- name: Access Jenkins Variables
+  hosts: all
+  tasks:
+    - name: Print Jenkins Variables
+      debug:
+        msg: |
+          Jenkins Token: {{ jenkins_token }}
+          Jenkins Username: {{ jenkins_username }}
+          Jenkins Build URL: {{ jenkins_build_url }}
+```
+
+  * With Environment Variables:
+
+```
+  env:
+    JENKINS_TOKEN: '{{ token }}'
+    JENKINS_USERNAME: '{{ username }}'
+    JENKINS_BUILD_URL: '{{ build_url }}'
+```
+
+This is how you will access the variables inside the playbook:
+
+```
+---
+- name: Access Jenkins Variables
+  hosts: all
+  tasks:
+    - name: Print Jenkins Variables
+      debug:
+        msg: |
+          Jenkins Token: {{ lookup('env', 'JENKINS_TOKEN') }} # the lookup function is used to load up the environment variable.
+          Jenkins Username: {{ lookup('env', 'JENKINS_USERNAME') }}
+          Jenkins Build URL: {{ lookup('env', 'JENKINS_BUILD_URL') }}
+```
+
+Now we can also include environment variables here:
+
+After saving this configuration, when we head to the credentials section and try to create a new credential we can now see this under the Credential Type Section, which was not available previously.
+
+![Screenshots](<Credentials Types - 2.png>)
+![Screenshots](<Credentials Types - 3.png>)
+
+
+# Application Section:
+
+  * The application section allows you to integrate the external applications like Jenkins to your Ansible Automation Platform Controller. 
+  * It uses OAuth 2.0 Protocol for managing token based authentication.
+
