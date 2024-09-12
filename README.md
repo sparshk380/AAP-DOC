@@ -2412,6 +2412,13 @@ After saving this configuration, when we head to the credentials section and try
           * Step 4: API Access: The application uses the access token to authenticate API requests and interact with AAP resources on behalf of the user.
   - Application using Resource Owner based password: The Password Grant Type is a method of authenticating users that allows an application (like a script or another tool) to directly use a user’s username and password to get permission to access the Ansible Automation Platform (AAP) on behalf of that user.    
 
+      * Working-
+        * Step1: Tool (application) collects username and password from the user.
+        * Step2: Tool sends credentials + its own details to AAP.
+        * Step3: AAP checks if the details are valid.
+        * Step4: AAP sends back an access token.
+        Tool uses the access token to perform tasks on AAP (on behalf of the user).
+        
 * Redirect URI - This is mandatory to be used when using authorization grant type. This field indicates, where you want to redirect user after successfull authentication. This this is the URL your service will use to receive the authorization code
 
 * Client Type -  Select the level of security of the client device
