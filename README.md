@@ -2418,3 +2418,12 @@ After saving this configuration, when we head to the credentials section and try
   * Confidential - A Confidential Client is a type of application that is trusted to securely store sensitive information, such as a Client Secret
   * Public - A Public Client is a type of application that cannot securely store a Client Secret because it runs in an environment where it could be easily accessed by users or exposed to the public.
 
+# Notifications Tab
+
+We Can create a notificiation for any event like success execution of playbook, for the failure of playbook and on the job start.
+
+We can assign these notification from the Project section, and the job template section.
+
+1. Email Notifications: 
+
+![Screenshots](<Notification - EMAIL.png>)
