@@ -2293,17 +2293,6 @@ Why do we need instances?
 
 Currently we have a by default Instance - which is created as soon as we install ansible automation platform. 
 
-![Screenshots](<Policy Type .png>)
-When we click on it, it shows us the details like:
-
-  - Policy Type - Auto, which means how the system manages and allocates resources for job allocation.
-
-  - Instance Groups - The Instance Groups to which this instance belongs.
-
-  - Node Type: 
-    - Hybrid - hybrid means, it can run playbooks and can perform the management tasks for the AAP
-    - Execution -  execution means, this type of node is specifically designed to execute playbooks and Ansible tasks. It does not host the web UI or serve as the central management node.
-
 # Credential Types Section:
 
 As an administrator with superuser access, you can define a custom credential type in a standard format using a YAML/JSON-like definition, allowing the assignment of new credential types to jobs and inventory updates. This allows you to define a custom credential type that works in ways similar to existing credential types. For example, you could create a custom credential type that injects an API token for a third-party web service into an environment variable, which your playbook or custom inventory script could consume.
