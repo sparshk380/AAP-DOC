@@ -2406,3 +2406,26 @@ After saving this configuration, when we head to the credentials section and try
   * The application section allows you to integrate the external applications like Jenkins to your Ansible Automation Platform Controller. 
   * It uses OAuth 2.0 Protocol for managing token based authentication.
 
+  * With token based authentication you don't need to share the login credentials with the application you are trying to integrate.
+
+![Screenshots](<application - 1.png>)
+
+* Name: The name you want to specify for the Application
+* Description: The description of this application
+* Authorization grant type:  Select from one of the grant types to use in order for the user to acquire tokens for this application. 
+  - Application using Authorization code grant type: 
+      * The Authorization Code Grant Type is one of the most common OAuth 2.0 flows and is used for securely authenticating external applications (clients) that want to access Ansible Automation Platform on behalf of a user. It's specifically designed for applications that can securely handle confidential information, such as web servers.
+  
+      * Working - 
+          * Step 1 : 	User Authorization: The external application redirects the user to AAP's login page
+          * Step 2: 	Authorization Code: After the user successfully logs in and authorizes the app, AAP provides an authorization code to the application.
+          * Step 3: Exchange Code for Token: The application sends the authorization code to AAP, along with its Client ID and Client Secret, and in return, AAP provides an access token.
+          * Step 4: API Access: The application uses the access token to authenticate API requests and interact with AAP resources on behalf of the user.
+  - Application using Resource Owner based password: The Password Grant Type is a method of authenticating users that allows an application (like a script or another tool) to directly use a user’s username and password to get permission to access the Ansible Automation Platform (AAP) on behalf of that user.    
+
+* Redirect URI - This is mandatory to be used when using authorization grant type. This field indicates, where you want to redirect user after successfull authentication. This this is the URL your service will use to receive the authorization code
+
+* Client Type -  Select the level of security of the client device
+  * Confidential - A Confidential Client is a type of application that is trusted to securely store sensitive information, such as a Client Secret
+  * Public - A Public Client is a type of application that cannot securely store a Client Secret because it runs in an environment where it could be easily accessed by users or exposed to the public.
+
