@@ -2466,3 +2466,36 @@ We can assign these notification from the Project section, and the job template 
 # Access Section
 
 # Organizations - 
+
+An Organization is a logical collection of Users, Teams, Projects, and Inventories, and is the highest level in the automation controller object hierarchy.
+
+Use of the Organization Tab
+Centralized Management: Organizations in Ansible Automation Platform provide a way to group related resources such as projects, inventories, and credentials. This helps in managing access control and organizing resources logically.
+
+Access Control: By defining organizations, you can control which users and teams have access to specific resources. This is useful for managing permissions and ensuring that users only have access to the resources relevant to their roles.
+
+Resource Organization: Organizations help in structuring your automation resources in a way that mirrors your company’s structure or workflow. This can make it easier to manage and find resources.
+
+Segregation of Duties: It allows for segregation of duties within the platform. For example, different teams or departments can operate independently within their respective organizations, avoiding conflicts or overlaps in resource management.
+
+![Screenshots](<TowerHierarchy.png>)
+
+![Screenshots](<Organization - 1.png>)
+
+1. Name - Specify the name you want your organization to have.
+
+2. Max Hosts - 
+   * This field helps you to specify how many number of hosts this organization can manage, a value of 0 represents no limit. 
+   * It specifies the maximum number of hosts that can be managed or used within the scope of the organization. It sets a limit on the number of hosts that can be added to the inventories associated with that organization.
+
+3. Execution Environments - The execution environment that will be used for jobs inside of this organization. This will be used a fallback when an execution environment has not been explicitly assigned at the project, job template or workflow level. 
+
+4. Instance Groups - Instance Groups allow you to allocate and manage resources for executing Ansible jobs. When you run a playbook or other automation tasks, you need resources (known as "instances") to perform the actual execution.
+
+5. Execution Environments -
+   * The Execution Environments field allows you to associate specific Execution Environments with an organization.
+   * This ensures that only the appropriate Execution Environments are used, based on the organization’s needs and security policies.
+
+6. Galaxy Credentials - The Galaxy Credentials field allows you to integrate your organization with the Galaxy Credentials, so that this organization can make use of the roles and collections available in the Ansible Galaxy.
+
+
