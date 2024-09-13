@@ -2463,7 +2463,6 @@ We can assign these notification from the Project section, and the job template 
 * Notification Color - Select the color of notification for slack in which you want your message to be delivered.
 
 
-# Acess Section
+# Access Section
 
 # Organizations - 
- 
