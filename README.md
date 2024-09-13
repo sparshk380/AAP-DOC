@@ -2465,7 +2465,7 @@ We can assign these notification from the Project section, and the job template 
 
 # Access Section
 
-# Organizations - 
+# Organizations Tab- 
 
 An Organization is a logical collection of Users, Teams, Projects, and Inventories, and is the highest level in the automation controller object hierarchy.
 
@@ -2498,6 +2498,17 @@ Use of the Organization Tab:
    * This ensures that only the appropriate Execution Environments are used, based on the organization’s needs and security policies.
 
 6. Galaxy Credentials - The Galaxy Credentials field allows you to integrate your organization with the Galaxy Credentials, so that this organization can make use of the roles and collections available in the Ansible Galaxy.
+
+After Creating an Organisation, you can go to the <b>Access Tab</b> it will display all the Users associated with this Organization and their roles. You can even Add Users or Teams to make them a part of this Organization from the <b>Access Tab</b> itself and assign permissions from here.
+
+![Screenshots](<Organization - 2.png>)
+
+![Screenshots](<Organization - 3.png>)
+
+![Screenshots](<Organization - 4.png>)
+
+![Screenshots](<Organization - 5.png>)
+
 
 
 # Users Tab - 
@@ -2559,4 +2570,5 @@ From the <b>Roles tab</b>, you can assign permissions to the entire team, and th
 ![Screenshots](<Roles - 8.png>)
 
 
+# Settings Tab:
 
