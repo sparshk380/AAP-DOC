@@ -2572,6 +2572,7 @@ From the <b>Roles tab</b>, you can assign permissions to the entire team, and th
 
 # Settings Tab:
 
+# Authentication Settings:
 Under the settings tab you can configure, the authentication to Ansible Automation platform via third party services like, GitHub, Google, Azure Active Directory.
 
 ![Screenshots](<Login - 1.png>)
