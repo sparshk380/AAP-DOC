@@ -2434,3 +2434,36 @@ We can assign these notification from the Project section, and the job template 
 1. Email Notifications: 
 
 ![Screenshots](<Notification - EMAIL.png>)
+
+* Name - Name the notification service according to your requirement
+* Description - The Description is also based on what your requirements are.
+* Organization - Select the Organization, or let it be default
+
+* Type - Select the type as Email.
+
+* Username - Enter your email address as the username
+* Password - Enter the password for your email id
+* Host - If you are using a mail provider from Microsoft enter the host as smtp.office365.com.
+* Recipient List - Add the email addresses of the people you want to notify.
+* Sender e-mail - Enter your Email Address here
+* Port - Enter the port as 587
+* Timeout - The amount of time (in seconds) before the email notification stops trying to reach the host and times out. Ranges from 1 to 120 seconds.
+* Email Options - Select TLS if you have chosen port 587 
+
+* You can even customise the messages you want to deliver according to your needs under the customize messages section.
+
+2. Slack Notification: 
+
+![Screenshots](<Slack Notification.png>)
+
+* Destination channels - The channel you want your messages to be delivered to
+
+* Token - You have to create a authentication token from the Slack API page and enter it over here
+
+* Notification Color - Select the color of notification for slack in which you want your message to be delivered.
+
+
+# Acess Section
+
+# Organizations - 
+ 
