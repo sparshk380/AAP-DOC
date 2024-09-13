@@ -2469,14 +2469,15 @@ We can assign these notification from the Project section, and the job template 
 
 An Organization is a logical collection of Users, Teams, Projects, and Inventories, and is the highest level in the automation controller object hierarchy.
 
-Use of the Organization Tab
-Centralized Management: Organizations in Ansible Automation Platform provide a way to group related resources such as projects, inventories, and credentials. This helps in managing access control and organizing resources logically.
+Use of the Organization Tab:
 
-Access Control: By defining organizations, you can control which users and teams have access to specific resources. This is useful for managing permissions and ensuring that users only have access to the resources relevant to their roles.
+<b>Centralized Management:</b> Organizations in Ansible Automation Platform provide a way to group related resources such as projects, inventories, and credentials. This helps in managing access control and organizing resources logically.
 
-Resource Organization: Organizations help in structuring your automation resources in a way that mirrors your company’s structure or workflow. This can make it easier to manage and find resources.
+<b>Access Control:</b> By defining organizations, you can control which users and teams have access to specific resources. This is useful for managing permissions and ensuring that users only have access to the resources relevant to their roles.
 
-Segregation of Duties: It allows for segregation of duties within the platform. For example, different teams or departments can operate independently within their respective organizations, avoiding conflicts or overlaps in resource management.
+<b>Resource Organization:</b> Organizations help in structuring your automation resources in a way that mirrors your company’s structure or workflow. This can make it easier to manage and find resources.
+
+<b>Segregation of Duties:</b> It allows for segregation of duties within the platform. For example, different teams or departments can operate independently within their respective organizations, avoiding conflicts or overlaps in resource management.
 
 ![Screenshots](<TowerHierarchy.png>)
 
@@ -2497,5 +2498,65 @@ Segregation of Duties: It allows for segregation of duties within the platform. 
    * This ensures that only the appropriate Execution Environments are used, based on the organization’s needs and security policies.
 
 6. Galaxy Credentials - The Galaxy Credentials field allows you to integrate your organization with the Galaxy Credentials, so that this organization can make use of the roles and collections available in the Ansible Galaxy.
+
+
+# Users Tab - 
+
+A User is someone who has access to automation controller with associated permissions and credentials. Access the Users page by clicking Users from the left navigation bar. The User list may be sorted and searched by Username, First Name, or Last Name and click the headers to toggle your sorting preference.
+
+![Screenshots](<Users - 1.png>)
+
+1. First Name - The First Name you want to add.
+2. Last Name - Your Last Name
+3. Email - Enter your Email 
+4. Username - Enter the username you want for your user. Please specify this and remember it because you will require it when you want to log in using that user.
+5. Password - Enter a password for that user.
+6. Confirm Password - Again Enter the same password.
+7. User Type - 
+   * <b>Normal User</b> - Normal Users have read and write access limited to the resources (such as inventory, projects, and job templates) for which that user has been granted the appropriate roles and privileges.
+   * <b>System Auditor</b> -  Auditors implicitly inherit the read-only capability for all objects within the environment. However, if you want to give them permissions like other users, you can easily do that under the Roles tab.
+   * <b>System Administrator</b> - A System Administrator (also known as Superuser) has full system administration privileges – with full read and write privileges over the entire installation. A System Administrator is typically responsible for managing all aspects of automation controller and delegating responsibilities for day-to-day work to various Users. Assign with caution!
+
+![Screenshots](<Users - 2.png>)
+After Creating your user, you can easily assign them to organizations, teams and from the roles section you can assign them with permissions.
+
+![Screenshots](<Roles - 1.png>)
+
+  * You can select the resource on which you want your user to have access to. For this I have selected <b>Inventories</b>
+
+![Screenshots](<Roles - 2.png>)
+  
+  * You can select any of the inventories available
+
+![Screenshots](<Roles - 3.png>)
+  
+  * Now you can select whichever permission you want to give. You can even select multiple permissions as well.
+
+
+# Teams Tab -
+
+A Team is a subdivision of an organization with associated users, projects, credentials, and permissions. Teams provide a means to implement role-based access control schemes and delegate responsibilities across organizations. For instance, permissions may be granted to a whole Team rather than each user on the Team.
+
+You can create as many Teams of users as make sense for your Organization. Each Team can be assigned permissions, just as with Users. Teams can also scalably assign ownership for Credentials, preventing multiple interface click-throughs to assign the same Credentials to the same user.
+
+
+![Screenshots](<Team - 1.png>)
+
+![Screenshots](<Team - 2.png>)
+
+From the <b>Access Tab</b>, you can see the users who have access to this team.
+
+![Screenshots](<Roles - 4.png>)
+
+From the <b>Roles tab</b>, you can assign permissions to the entire team, and the users which are part of this team will inherit the permissions assigned to this team.
+
+![Screenshots](<Roles - 5.png>)
+
+![Screenshots](<Roles - 6.png>)
+
+![Screenshots](<Roles - 7.png>)
+
+![Screenshots](<Roles - 8.png>)
+
 
 
