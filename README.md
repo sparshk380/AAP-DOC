@@ -2581,9 +2581,9 @@ If we want to configure GitHub so that we can login directly to Ansible Automati
 
 ![Screenshots](<Login - 2.png>)
 
-1. GitHub OAuth2 Key - The OAuth2 key (Client ID) from your GitHub developer application.
+1. GitHub OAuth2 Key - The OAuth2 key <b>(Client ID)</b> from your GitHub developer application.
 
-2. GitHub OAuth2 Secret - The OAuth2 secret (Client Secret) from your GitHub developer application.
+2. GitHub OAuth2 Secret - The OAuth2 secret <b>(Client Secret)</b> from your GitHub developer application.
 
 3. GitHub OAuth2 Organization Map - Mapping to organization admins/users from social auth accounts. This setting controls which users are placed into which organizations based on their username and email address. Configuration details are available in the documentation.
 
@@ -2592,7 +2592,7 @@ If we want to configure GitHub so that we can login directly to Ansible Automati
 After that you have configured these settings, you can now go back to the login page and see there is an option which enables you to login through GitHub.
 ![Screenshots](<Settings - 1.png>)
 
-Now when you log in with the GitHub Option, you will see that a new user is created with your GitHub Username and which only has read only access, because we had left the GitHub OAuth2 Organization Map and GitHub OAuth2 Team Map fields as empty.
+Now when you log in with the GitHub Option, you will see that a new user is created with your GitHub Username and which only has read only access, because we had left the <b>GitHub OAuth2 Organization Map</b> and <b>GitHub OAuth2 Team Map</b> fields as empty.
 
 ![Screenshots](<Users - 3.png>)
 
